@@ -16,32 +16,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class StatisticsController {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
-
+	
 	@RequestMapping(value = "/transactions", produces = "application/json", method = RequestMethod.POST)
-	public @ResponseBody ResponseEntity<?> createTransaction(@RequestBody Map<String, Object> transaction) {
-		log.info("Received " + transaction.toString());
-
-		if (!transaction.containsKey("timestamp") || !transaction.containsKey("amount")) {
-			return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
-		}
-		try {
-			double amount = (Double) transaction.get("amount");
-			log.info("Amount is " + amount);
-			long timestamp = (long) transaction.get("timestamp");
-			log.info("timestamp is  " + timestamp);
-
-			String result = TransactionDB.addToList(new Transaction(timestamp, amount));
-
+	public @ResponseBody ResponseEntity<?> createTransaction(@RequestBody Transaction transaction) {
+			log.info("Received " + transaction.toString());
+			String result = TransactionDB.addToList(transaction);
 			log.info("result is " + result);
 			if (result == "204") {
-				log.info("Returning " + HttpStatus.NO_CONTENT);
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			} else
 				return new ResponseEntity<>(HttpStatus.CREATED);
-		} catch (ClassCastException e) {
-			log.info("ClassCastException");
-			return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
-		}
 	}
 
 	@RequestMapping(value = "/statistics", method = RequestMethod.GET)
