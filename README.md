@@ -32,10 +32,4 @@ Example correct POST request to the /transaction endpoint (must be *application/
 
 - To produce the statistics, the Java DoubleSummaryStatistics class was used.
 
-The server will return a 422 value (Unprocessable entity) if 
-
-- the 'timestamp' or 'amount' field is missing
-- the 'timestamp' or 'amount' field contains an uncorrect value (eg. a string)
-
-
 
