@@ -1,7 +1,5 @@
 package statistics;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class Transaction {
 	
     private final long timestamp;
