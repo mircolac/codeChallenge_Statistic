@@ -20,7 +20,7 @@ containing the statistics.
 - navigate to 'target' folder
 - >java -jar gs-rest-service-0.1.0.jar
 
-Example correct POST request to the /transaction endpoint (must be application/json Content-type)
+Example correct POST request to the /transaction endpoint (must be *application/json Content-type*)
 
   {
   	"timestamp": 1506809503307,
