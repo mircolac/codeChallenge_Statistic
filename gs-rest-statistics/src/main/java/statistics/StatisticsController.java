@@ -17,7 +17,7 @@ public class StatisticsController {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-	@RequestMapping(value = "/transactions", produces = "application/x-www-form-urlencoded", method = RequestMethod.POST)
+	@RequestMapping(value = "/transactions", produces = "application/json", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<?> createTransaction(@RequestBody Map<String, Object> transaction) {
 		log.info("Received " + transaction.toString());
 
