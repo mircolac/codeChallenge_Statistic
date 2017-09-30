@@ -36,7 +36,7 @@ public class TransactionDB {
 		long timeNow = Instant.now().toEpochMilli();
 
 		log.info("Instant.now().toEpochMilli() is " + Instant.now().toEpochMilli());
-		log.info("timestamp is " + Instant.now().toEpochMilli());
+		log.info("timestamp is " + timestamp);
 
 		if (timestamp < (timeNow - ONE_MINUTE)) {
 			return "204";
