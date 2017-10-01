@@ -22,7 +22,7 @@ public class TransactionDB {
 	private static String statsAsString = new String();
 
 	/*
-	 * Retrieve the Transaction Object and - if the timestamp is too old, returns a
+	 * Retrieves the Transaction Object and - if the timestamp is too old, returns a
 	 * "204" string to the controller - if the timestamp is recent, adds the
 	 * timestamp and amount list to the map, (or if the timestamp already exists
 	 * just add the 'amount' value to the timestamp existing key) Eventually, update
@@ -70,6 +70,10 @@ public class TransactionDB {
 			@Override
 			public void run() {
 				synchronized (map) {
+					if (map.get(timestamp) == null) {
+						//timestamp key was already deleted
+						return;
+					}
 					log.info("Time out for " + timestamp + "-" + map.get(timestamp));
 					map.remove(timestamp);
 					updateStatistics();
